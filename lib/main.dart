@@ -19,7 +19,8 @@ class _MyAppState extends State<MyApp> {
     return  MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: Theme.of(context)
-            .copyWith(primaryColor: Color(AppColors.AppBarColor)),
+            .copyWith(primaryColor: Color(AppColors.AppBarColor),
+            cardColor: Color(0xff373B3E)),
         home: Home_Main(),
     );
   }

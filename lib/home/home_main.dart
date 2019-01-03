@@ -5,6 +5,8 @@ import 'page_contact.dart';
 import 'page_discover.dart';
 import 'page_mine.dart';
 
+enum popupMenuItems{GROUP_CHAT, ADD_FRIEND, QR_SCAN, PAYMENT, HELP}
+
 class Home_Main extends StatefulWidget {
   _Home_MainState createState() => _Home_MainState();
 }
@@ -43,10 +45,21 @@ class _Home_MainState extends State<Home_Main> {
       DiscoverPage(),
       MinePage(),
     ];
+
+    
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget _popupItem(int iconNum , String title){
+       return Row(
+         children: <Widget>[
+           Icon(IconData(iconNum,fontFamily: Constants.IconFontFamily),color: Colors.white,),
+           SizedBox(width: 20,),
+           Text(title,style: TextStyle(color: Colors.white),)
+         ],
+       );
+    }
     final BottomNavigationBar bottomNavBar = BottomNavigationBar(
       items:
           _navigationViews.map((NavigationIconView view) => view.item).toList(),
@@ -75,9 +88,18 @@ class _Home_MainState extends State<Home_Main> {
               width: 20,
             ),
             PopupMenuButton(
+              offset: ,
               icon: Icon(IconData(0xe620, fontFamily: Constants.IconFontFamily),
                   size: 18),
-              itemBuilder: (context) {},
+              itemBuilder: (context) {
+                return <PopupMenuItem>[
+                  PopupMenuItem(child: _popupItem(0xe69e,'发起群聊'),value: popupMenuItems.GROUP_CHAT,),
+                  PopupMenuItem(child:_popupItem(0xe624,'添加朋友') ,value: popupMenuItems.ADD_FRIEND,),
+                  PopupMenuItem(child: _popupItem(0xe64c,'扫一扫'),value: popupMenuItems.QR_SCAN,),
+                  PopupMenuItem(child: _popupItem(0xe62a,'收付款'),value: popupMenuItems.PAYMENT,),
+                  PopupMenuItem(child:_popupItem(0xe61f,'帮助与反馈') ,value: popupMenuItems.HELP,),
+                ];
+              },
             ),
             SizedBox(
               width: 20,
@@ -107,3 +129,4 @@ class NavigationIconView {
             icon: Icon(icon),
             activeIcon: Icon(activeIcon));
 }
+
