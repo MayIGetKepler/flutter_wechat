@@ -7,11 +7,11 @@ import 'page_mine.dart';
 
 enum popupMenuItems{GROUP_CHAT, ADD_FRIEND, QR_SCAN, PAYMENT, HELP}
 
-class Home_Main extends StatefulWidget {
-  _Home_MainState createState() => _Home_MainState();
+class HomeMain extends StatefulWidget {
+  _HomeMainState createState() => _HomeMainState();
 }
 
-class _Home_MainState extends State<Home_Main> {
+class _HomeMainState extends State<HomeMain> {
   List<NavigationIconView> _navigationViews;
   PageController _pageController;
   List<Widget> _pages;
@@ -51,15 +51,7 @@ class _Home_MainState extends State<Home_Main> {
 
   @override
   Widget build(BuildContext context) {
-    Widget _popupItem(int iconNum , String title){
-       return Row(
-         children: <Widget>[
-           Icon(IconData(iconNum,fontFamily: Constants.IconFontFamily),color: Colors.white,),
-           SizedBox(width: 20,),
-           Text(title,style: TextStyle(color: Colors.white),)
-         ],
-       );
-    }
+   
     final BottomNavigationBar bottomNavBar = BottomNavigationBar(
       items:
           _navigationViews.map((NavigationIconView view) => view.item).toList(),
@@ -75,6 +67,7 @@ class _Home_MainState extends State<Home_Main> {
     );
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
           title: Text('微信'),
           actions: <Widget>[
             IconButton(
@@ -88,16 +81,16 @@ class _Home_MainState extends State<Home_Main> {
               width: 20,
             ),
             PopupMenuButton(
-              offset: ,
+              offset: Offset(MediaQuery.of(context).size.width ,60.0),
               icon: Icon(IconData(0xe620, fontFamily: Constants.IconFontFamily),
                   size: 18),
               itemBuilder: (context) {
                 return <PopupMenuItem>[
-                  PopupMenuItem(child: _popupItem(0xe69e,'发起群聊'),value: popupMenuItems.GROUP_CHAT,),
-                  PopupMenuItem(child:_popupItem(0xe624,'添加朋友') ,value: popupMenuItems.ADD_FRIEND,),
-                  PopupMenuItem(child: _popupItem(0xe64c,'扫一扫'),value: popupMenuItems.QR_SCAN,),
-                  PopupMenuItem(child: _popupItem(0xe62a,'收付款'),value: popupMenuItems.PAYMENT,),
-                  PopupMenuItem(child:_popupItem(0xe61f,'帮助与反馈') ,value: popupMenuItems.HELP,),
+                  PopupMenuItem(child: popupItem(0xe69e,'发起群聊'),value: popupMenuItems.GROUP_CHAT,),
+                  PopupMenuItem(child: popupItem(0xe624,'添加朋友') ,value: popupMenuItems.ADD_FRIEND,),
+                  PopupMenuItem(child: popupItem(0xe64c,'扫一扫'),value: popupMenuItems.QR_SCAN,),
+                  PopupMenuItem(child: popupItem(0xe62a,'收付款'),value: popupMenuItems.PAYMENT,),
+                  PopupMenuItem(child: popupItem(0xe61f,'帮助与反馈') ,value: popupMenuItems.HELP,),
                 ];
               },
             ),
@@ -130,3 +123,12 @@ class NavigationIconView {
             activeIcon: Icon(activeIcon));
 }
 
+ Widget popupItem(int iconNum , String title){
+       return Row(
+         children: <Widget>[
+           Icon(IconData(iconNum,fontFamily: Constants.IconFontFamily),color: Colors.white,),
+           SizedBox(width: 20,),
+           Text(title,style: TextStyle(color: Colors.white),)
+         ],
+       );
+    }

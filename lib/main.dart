@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
         theme: Theme.of(context)
             .copyWith(primaryColor: Color(AppColors.AppBarColor),
             cardColor: Color(0xff373B3E)),
-        home: Home_Main(),
+        home: HomeMain(),
     );
   }
 }
