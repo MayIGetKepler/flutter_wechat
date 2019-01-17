@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/conversation.dart'
-    show mockConversationData, Conversation, Device;
+    show ConversationPageData, Conversation, Device;
 import 'package:flutter_wechat/constants.dart';
 
 class ConversationPage extends StatefulWidget {
@@ -9,19 +9,21 @@ class ConversationPage extends StatefulWidget {
 
 class _ConversationPageState extends State<ConversationPage>
     with AutomaticKeepAliveClientMixin {
-  List<Conversation> conversations = mockConversationData['conversation'];
-  Device device = mockConversationData['device'];
+  List<Conversation> conversations = ConversationPageData.mock().conversations;
+  Device device = ConversationPageData.mock().device;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
+        //需要显示电脑设备登录信息
         if (device != null) {
           if (index == 0) {
             return DeviceInfoItem(device);
           } else {
             return ConversationWidget(conversations[index - 1]);
           }
-        } else {
+        }  //不需要显示电脑设备登录信息
+        else {
           return ConversationWidget(conversations[index]);
         }
       },
@@ -186,7 +188,7 @@ class _DeviceInfoItemState extends State<DeviceInfoItem> {
           Icon(
             IconData(widget.deviceIcon, fontFamily: Constants.IconFontFamily),
             color: Color(AppColors.DeviceInfoItemIcon),
-            size: 30,
+            size: 28,
           ),
           SizedBox(
             width: 20,

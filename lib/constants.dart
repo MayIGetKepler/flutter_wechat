@@ -13,6 +13,8 @@ class AppColors{
   static const DeviceInfoItemBg = 0xfff5f5f5;
   static const DeviceInfoItemText = 0xff606062;
   static const DeviceInfoItemIcon = 0xff606062;
+  static const ContactGroupTitleBg = 0xffebebeb;
+  static const ContactGroupTitleText = 0xff888888;
 
 }
 
@@ -37,6 +39,11 @@ class AppStyles{
     fontSize: 13.0,
     color: Color(AppColors.DeviceInfoItemText),
   );
+
+  static const GroupTitleItemTextStyle = TextStyle(
+    fontSize: 14.0,
+    color: Color(AppColors.ContactGroupTitleText),
+  );
 }
 
 class Constants{
@@ -44,4 +51,5 @@ class Constants{
   static const double ConversationAvatarSize = 48.0;
   static const double UnReadMsgNotifyDotSize = 20.0;
   static const double ConversationMuteIconSize = 16.0;
+  static const double ContactAvatarSize = 38.0;
 }
