@@ -10,10 +10,10 @@ class Conversation {
   final String des;
   final bool isMute;
   final String updateAt;
-  final int unreadMessage;
+   int unreadMessage;
   final bool isPlayDot;
 
-  const Conversation(
+   Conversation(
       {this.avatar: 'assets/images/default_nor_avatar.png',
       @required this.title,
       this.titleColor: AppColors.TitleTextColor,
@@ -32,7 +32,7 @@ class Conversation {
 
 class ConversationPageData {
   final Device device;
-  final List<Conversation> conversations;
+   List<Conversation> conversations;
   ConversationPageData({this.device, this.conversations});
 
   static ConversationPageData mock() {
@@ -41,8 +41,8 @@ class ConversationPageData {
   }
 }
 
-const List<Conversation> _mockConversations = [
-  const Conversation(
+ List<Conversation> _mockConversations = [
+   Conversation(
     avatar: 'assets/images/ic_file_transfer.png',
     title: '文件传输助手',
     des: '',

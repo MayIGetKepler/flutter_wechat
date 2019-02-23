@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class AppColors{
+  static const AppBgColor = 0xffebebeb;
   static const AppBarColor = 0xff303030;
   static const BottomActiveColor = 0xff43C118;
   static const TitleTextColor = 0xff353535;
@@ -60,4 +61,5 @@ class Constants{
   static const double ContactAvatarSize = 38.0;
   static const double IndexLetterBoxSize = 114.0;
   static const double IndexLetterBoxRadius = 4.0;
+  static const double FullWidthIconSize = 24.0;
 }

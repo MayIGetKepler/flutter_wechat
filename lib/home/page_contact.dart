@@ -34,8 +34,8 @@ const INDEX_BAR_WORDS = [
 ];
 
 class ContactPage extends StatefulWidget {
-  Color _indexBarGg = Colors.transparent;
-  String _currentLetter = '';
+   
+  
   _ContactPageState createState() => _ContactPageState();
 }
 
@@ -48,6 +48,9 @@ class _ContactPageState extends State<ContactPage>
   List<Widget> _body;
   ScrollController _scrollController;
   Map _indexPositionMap = {INDEX_BAR_WORDS[0]: 0.0};
+
+  String _currentLetter = '';
+  Color _indexBarGg = Colors.transparent;
 
   var _totalHeight = 0.0;
 
@@ -130,8 +133,8 @@ class _ContactPageState extends State<ContactPage>
 
 //页面滑动到索引位置
   _jumpToIndex(Curve curve){
-    if(_indexPositionMap!=null && _indexPositionMap.containsKey(widget._currentLetter)){
-      _scrollController.animateTo(_indexPositionMap[widget._currentLetter],
+    if(_indexPositionMap!=null && _indexPositionMap.containsKey(_currentLetter)){
+      _scrollController.animateTo(_indexPositionMap[_currentLetter],
             curve: curve, duration: Duration(milliseconds: 300));
     }
   }
@@ -146,27 +149,27 @@ class _ContactPageState extends State<ContactPage>
     return GestureDetector(
       onVerticalDragDown: (DragDownDetails details) {
         setState(() {
-          widget._indexBarGg = Colors.black26;
-          widget._currentLetter =
+          _indexBarGg = Colors.black26;
+          _currentLetter =
               _getLetter(context, _barTileHeight, details.globalPosition);
         });
         _jumpToIndex(Curves.easeInOut);
       },
       onVerticalDragEnd: (DragEndDetails details) {
         setState(() {
-          widget._indexBarGg = Colors.transparent;
-          widget._currentLetter = '';
+          _indexBarGg = Colors.transparent;
+          _currentLetter = '';
         });
       },
       onVerticalDragCancel: () {
         setState(() {
-          widget._indexBarGg = Colors.transparent;
-          widget._currentLetter = '';
+          _indexBarGg = Colors.transparent;
+          _currentLetter = '';
         });
       },
       onVerticalDragUpdate: (DragUpdateDetails details) {
         setState(() {
-          widget._currentLetter =
+          _currentLetter =
               _getLetter(context, _barTileHeight, details.globalPosition);
               
         });
@@ -218,7 +221,7 @@ class _ContactPageState extends State<ContactPage>
         bottom: 0,
         width: 20,
         child: Container(
-          color: widget._indexBarGg,
+          color: _indexBarGg,
           child: LayoutBuilder(
             builder: _indexBarBulider,
           ),
@@ -226,7 +229,7 @@ class _ContactPageState extends State<ContactPage>
       ),
     ];
     //根据_currentLetter的内容是不是空，判断是否添加中间显示索引的控件
-    if (widget._currentLetter != null && widget._currentLetter.isNotEmpty) {
+    if (_currentLetter != null && _currentLetter.isNotEmpty) {
       _body.add(Center(
         child: Container(
           width: Constants.IndexLetterBoxSize,
@@ -235,7 +238,7 @@ class _ContactPageState extends State<ContactPage>
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Constants.IndexLetterBoxRadius),
                color: AppColors.IndexLetterBoxBg),
-          child: Text(widget._currentLetter,style: AppStyles.IndexLetterBoxTextStyle,),
+          child: Text(_currentLetter,style: AppStyles.IndexLetterBoxTextStyle,),
         ),
       ));
     }
